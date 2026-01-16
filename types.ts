@@ -27,6 +27,11 @@ export interface WeatherData {
     temp: number;
     condition: string;
   }>;
+  hourlyForecast: Array<{
+    time: string;
+    temp: number;
+    condition: string;
+  }>;
   aiInsights: string;
   // Added sources to comply with Gemini search grounding requirements
   sources?: Array<{ title: string; uri: string }>;

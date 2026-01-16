@@ -12,6 +12,7 @@ export const fetchWeatherData = async (location: string): Promise<WeatherData> =
 
   const prompt = `
     Retrieve absolute current, real-time weather and air quality analytics for ${location}, India.
+    Include a detailed hourly forecast for the next 12 hours (e.g., "1 PM", "2 PM") and a daily forecast for the next 7 days.
     Source data from IMD (India Meteorological Dept), CPCB, and reputable live news.
   `;
 
@@ -59,12 +60,24 @@ export const fetchWeatherData = async (location: string): Promise<WeatherData> =
               required: ["day", "temp", "condition"]
             }
           },
+          hourlyForecast: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                time: { type: Type.STRING },
+                temp: { type: Type.NUMBER },
+                condition: { type: Type.STRING }
+              },
+              required: ["time", "temp", "condition"]
+            }
+          },
           aiInsights: { type: Type.STRING }
         },
         required: [
           "city", "temperature", "humidity", "windSpeed", "visibility", 
           "uvIndex", "pressure", "condition", "rainProbability", 
-          "airDensity", "aqi", "pollution", "forecast", "aiInsights"
+          "airDensity", "aqi", "pollution", "forecast", "hourlyForecast", "aiInsights"
         ]
       }
     }

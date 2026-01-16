@@ -1,0 +1,7 @@
+{
+  "name": "AeroCast Pro",
+  "description": "A sophisticated weather and air quality monitoring platform featuring real-time AI analytics, pollution tracking, and air density modeling.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
